@@ -23,15 +23,16 @@ public class BlogPost {
     private String title;
     private String cover;
     private String body;
-    private LocalTime readingTime;
+    private int readingTime;
     @ManyToOne
     @JoinColumn(name = "author_id", nullable = false)
     Author author;
 
-    public BlogPost(String cathegory, String title, String body) {
+    public BlogPost(String cathegory, String title, String body, Author author) {
         this.cathegory = cathegory;
         this.title = title;
         this.body = body;
+        this.author = author;
 
     }
 }

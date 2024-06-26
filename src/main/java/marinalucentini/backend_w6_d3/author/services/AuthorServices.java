@@ -51,5 +51,10 @@ newAuthor.setAvatar("https://unsplash.com/it/foto/una-donna-con-i-capelli-ricci-
         System.out.println("L'autore " + found.getName() + "è stato correttamente modificato");
       return   authorRepository.save(found);
     }
+    // delete autore
+    public void findByIdAndDelete(UUID authorId) {
+        Author found = this.findById(authorId);
+     authorRepository.delete(found);
+    }
 
 }

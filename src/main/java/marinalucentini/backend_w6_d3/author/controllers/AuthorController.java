@@ -31,4 +31,9 @@ public class AuthorController {
     public Author findByIdAndUpdate (@PathVariable UUID authorId, @RequestBody Author authorModificated){
         return authorServices.findByIdAndUpdate(authorId, authorModificated);
 }
+@DeleteMapping("/{authorId}")
+    public void deleteAuthor(@PathVariable UUID authorId){
+        authorServices.findByIdAndDelete(authorId);
+    System.out.println("L'autore è stato correttamente cancellato");
+}
 }
