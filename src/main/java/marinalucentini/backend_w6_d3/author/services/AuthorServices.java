@@ -1,9 +1,10 @@
 package marinalucentini.backend_w6_d3.author.services;
 
 import marinalucentini.backend_w6_d3.author.entities.Author;
-import marinalucentini.backend_w6_d3.author.exceptions.BadRequestException;
+import marinalucentini.backend_w6_d3.exceptions.BadRequestException;
 import marinalucentini.backend_w6_d3.author.repository.AuthorRepository;
 
+import marinalucentini.backend_w6_d3.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -11,7 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
+import java.util.UUID;
 
 @Service
 public class AuthorServices {
@@ -24,7 +25,8 @@ authorRepository.findByEmail(newAuthor.getEmail()).ifPresent(
             throw new BadRequestException("L'email " + newAuthor.getEmail() + " è già in uso!");
         }
 );
-newAuthor.setDateOfBirth(LocalDate.now().minusYears(22));
+newAuthor.setAvatar("https://unsplash.com/it/foto/una-donna-con-i-capelli-ricci-in-posa-per-una-foto-tJB3XMRErxQ");
+
         System.out.println("L'autore " + newAuthor.getName() + " è stato correttamente salvato nel db." );
       return   authorRepository.save(newAuthor);
     }
@@ -33,6 +35,10 @@ newAuthor.setDateOfBirth(LocalDate.now().minusYears(22));
         if(pageSize> 50) pageSize = 50;
         Pageable pageable= PageRequest.of(pageNumber, pageSize, Sort.by(sortBy));
         return authorRepository.findAll(pageable);
+    }
+    // get singolo autore
+    public Author findById(UUID id){
+        return authorRepository.findById(id).orElseThrow(()-> new NotFoundException(id));
     }
 
 }

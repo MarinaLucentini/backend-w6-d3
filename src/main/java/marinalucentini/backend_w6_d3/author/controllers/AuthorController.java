@@ -7,6 +7,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/authors")
 public class AuthorController {
@@ -21,5 +23,9 @@ public class AuthorController {
     public Page<Author> getAllUsers(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "5") int size, @RequestParam(defaultValue = "name") String sortBy) {
         return authorServices.getAuthors(page, size, sortBy);
     }
+@GetMapping ("/{userId}")
+    public Author findById(@PathVariable UUID userId){
+        return authorServices.findById(userId);
+}
 
 }
