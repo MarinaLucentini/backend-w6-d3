@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>marinalucentini</groupId>
-	<artifactId>backend-w6-d3</artifactId>
+	<artifactId>BlogApp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>backend-w6-d3</name>
 	<description>Demo project for Spring Boot</description>
