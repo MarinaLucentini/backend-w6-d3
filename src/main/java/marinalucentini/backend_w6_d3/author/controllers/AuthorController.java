@@ -23,9 +23,12 @@ public class AuthorController {
     public Page<Author> getAllUsers(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "5") int size, @RequestParam(defaultValue = "name") String sortBy) {
         return authorServices.getAuthors(page, size, sortBy);
     }
-@GetMapping ("/{userId}")
-    public Author findById(@PathVariable UUID userId){
-        return authorServices.findById(userId);
+@GetMapping ("/{authorId}")
+    public Author findById(@PathVariable UUID authorId){
+        return authorServices.findById(authorId);
 }
-
+@PutMapping("/{authorId}")
+    public Author findByIdAndUpdate (@PathVariable UUID authorId, @RequestBody Author authorModificated){
+        return authorServices.findByIdAndUpdate(authorId, authorModificated);
+}
 }
